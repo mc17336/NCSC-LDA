@@ -105,11 +105,9 @@ if __name__ == "__main__":
     # start all worker processes
     pool = Pool(processes= cpu_count()) 
     
+    # context manager so no need to close
     with pool as p:
         results = p.map(get_articles, [link for link in report_links])
-    
-    # end all processes
-    pool.close()
     
     print("Finished getting articles!")
     end_time = datetime.datetime.now()
